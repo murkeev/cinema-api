@@ -22,7 +22,6 @@ public class UserService {
         List<User> users = userRepository.findAll();
         if (users.isEmpty()) {
             throw new RuntimeException("Users not found.");
-
         }
         return users;
     }
@@ -64,6 +63,30 @@ public class UserService {
             return userRepository.save(user);
         } catch (Exception e) {
             throw new IllegalArgumentException("illegal");
+        }
+    }
+
+    @Transactional
+    public boolean removeUser(String username) {
+        User existingUser = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        try {
+            userRepository.delete(existingUser);
+            return true;
+        } catch (Exception e) {
+            throw new RuntimeException("Fail.");
+        }
+    }
+
+    @Transactional
+    public User update(User updateUser) {
+        User existingUser = userRepository.findByUsername(updateUser.getUsername())
+                .orElseThrow(() -> new RuntimeException("Movie not found"));
+        modelMapper.map(updateUser, existingUser);
+        try {
+            return userRepository.save(existingUser);
+        } catch (Exception e) {
+            throw new RuntimeException("Fail.");
         }
     }
 }

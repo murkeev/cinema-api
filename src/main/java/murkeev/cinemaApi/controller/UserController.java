@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import murkeev.cinemaApi.entity.User;
 import murkeev.cinemaApi.service.UserService;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -45,4 +46,9 @@ public class UserController {
         return userService.findByDate(createdDate);
     }
 
+    @MutationMapping
+    public boolean removeUser(@Argument String username) {
+        return userService.removeUser(username);
+    }
 }
+

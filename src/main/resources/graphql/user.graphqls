@@ -1,24 +1,24 @@
 type User {
-id: ID!,
-username: String!,
-email: String!,
-firstname: String,
-lastname: String,
-createdDate: String!
+    id: ID!,
+    username: String!,
+    email: String!,
+    firstname: String,
+    lastname: String,
+    createdDate: String!
 }
 
 type Query{
-getAllUsers:[User!]!
-getByUsername(username:String!):User!
-getByEmail(email:String!):User!
-getByFirstname(firstname:String!):[User!]!
-getByLastname(lastname:String!):[User!]!
-getByCreatedDate(createdDate:String!):[User!]!
-
-}
+    getAllUsers:[User]!
+    getByUsername(username:String!):User!
+    getByEmail(email:String!):User!
+    getByFirstname(firstname:String!):[User]!
+    getByLastname(lastname:String!):[User]!
+    getByCreatedDate(createdDate:String!):[User]!
+ }
 
 type Mutation {
     addUser(registrationUserDto: RegistrationUserDto): User!
+    removeUser(username:String!):Boolean!
 }
 
 input RegistrationUserDto {

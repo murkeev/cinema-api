@@ -1,0 +1,14 @@
+type Movie {
+    id:ID!
+    title:String!
+    duration:Int!
+    genre:String!
+}
+
+extend type Query{
+    getAllMovies:[Movie]!
+}
+
+extend type Mutation {
+    removeMovie(title:String!):Boolean!
+}
