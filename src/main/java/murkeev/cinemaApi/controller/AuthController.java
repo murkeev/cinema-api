@@ -15,7 +15,12 @@ public class AuthController {
     private final AuthService authService;
 
     @MutationMapping
-    public User addUser( @Valid @Argument RegistrationUserDto registrationUserDto) {
+    public User register(@Valid @Argument RegistrationUserDto registrationUserDto) {
         return authService.save(registrationUserDto);
+    }
+
+    @MutationMapping
+    public String login (@Valid @Argument String login, @Valid @Argument String password) {
+        return authService.authenticateAndGenerateToken(login, password);
     }
 }

@@ -14,15 +14,27 @@ type Query{
     getByFirstname(firstname:String!):[User]!
     getByLastname(lastname:String!):[User]!
     getByCreatedDate(createdDate:String!):[User]!
- }
+    profile:User!
+}
 
 type Mutation {
-    addUser(registrationUserDto: RegistrationUserDto): User!
+    register(registrationUserDto: RegistrationUserDto): User!
+    login(login:String!, password:String!):String!
     removeUser(username:String!):Boolean!
+    update(updateUser:UpdateUser):User!
+    changePassword(oldPassword:String!, newPassword:String!):Boolean!
+    deleteAccount:Boolean!
 }
 
 input RegistrationUserDto {
     username: String!
     password: String!
     email: String!
+}
+
+input UpdateUser {
+    username:String
+    email:String
+    firstname:String
+    lastname:String
 }

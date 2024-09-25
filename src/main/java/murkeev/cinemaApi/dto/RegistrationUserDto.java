@@ -2,15 +2,11 @@ package murkeev.cinemaApi.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class RegistrationUserDto {
     @Pattern(regexp = "^[a-zA-Z0-9]{4,}$",
             message = "Username must be at least 4 characters long and contain only letters and digits")

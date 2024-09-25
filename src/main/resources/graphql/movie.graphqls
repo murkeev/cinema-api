@@ -2,13 +2,43 @@ type Movie {
     id:ID!
     title:String!
     duration:Int!
-    genre:String!
+    genres:[Genre!]!
 }
 
 extend type Query{
     getAllMovies:[Movie]!
+    getByGenre(genre:Genre!):[Movie]!
+    getMovieByTitle(title:String!):Movie!
 }
 
 extend type Mutation {
     removeMovie(title:String!):Boolean!
+    addMovie(movieInput:MovieInput):Movie!
+    updateMovie(updateMovie:UpdateMovieDto!):Movie!
+}
+
+input MovieInput{
+    title:String!
+    duration:Int!
+    description:String!
+    releaseDate:String!
+    ageRating:String!
+    genres:[Genre!]!
+}
+
+input UpdateMovieDto {
+    title:String
+    duration:Int
+    description:String
+    releaseDate:String
+    ageRating:String
+    genres:[Genre]
+}
+
+enum Genre {
+    FANTASY,
+    HORROR,
+    DOCUMENTARY,
+    DRAMA,
+    COMEDY
 }
